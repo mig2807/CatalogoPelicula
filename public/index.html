@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Películas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    
+        form {
+            margin-bottom: 20px;
+        }
+    
+        input {
+            display: block;
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+        }
+    
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+        }
+    
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 5px;
+        }
+    
+        li strong {
+            display: block;
+        }
+    
+        li button {
+            margin-right: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Catálogo de Películas</h1>
+
+    <!-- Formulario para agregar o actualizar una película -->
+    <form id="peliculaForm">
+        <input type="hidden" id="peliculaId" />
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required><br>
+        <label for="categoria">Categoría:</label>
+        <input type="text" id="categoria" required><br>
+        <label for="año">Año:</label>
+        <input type="number" id="año" required><br>
+        <label for="director">Director:</label>
+        <input type="text" id="director" required><br>
+        <label for="duracion">Duración (minutos):</label>
+        <input type="number" id="duracion" required><br>
+        <label for="calificacion">Calificación:</label>
+        <input type="number" id="calificacion" step="0.1" required><br>
+        <button type="submit">Guardar Película</button>
+    </form>
+
+    <hr>
+
+    <!-- Mostrar todas las películas -->
+    <h2>Películas</h2>
+    <ul id="listaPeliculas"></ul>
+
+    <script>
+        // URL de la API
+        const apiURL = 'http://localhost:3000/peliculas';
+
+        // Obtener el formulario y la lista de películas
+        const peliculaForm = document.getElementById('peliculaForm');
+        const listaPeliculas = document.getElementById('listaPeliculas');
+
+        // Función para obtener todas las películas
+        async function obtenerPeliculas() {
+            const response = await fetch(apiURL);
+            const peliculas = await response.json();
+            listaPeliculas.innerHTML = '';
+            peliculas.forEach(pelicula => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${pelicula.nombre}</strong> - ${pelicula.categoria} (${pelicula.año})
+                    <button onclick="editarPelicula('${pelicula._id}')">Editar</button>
+                    <button onclick="eliminarPelicula('${pelicula._id}')">Eliminar</button>
+                `;
+                listaPeliculas.appendChild(li);
+            });
+        }
+
+        // Función para agregar o actualizar una película
+        async function guardarPelicula(event) {
+            event.preventDefault();
+            const peliculaId = document.getElementById('peliculaId').value;
+            const nombre = document.getElementById('nombre').value;
+            const categoria = document.getElementById('categoria').value;
+            const año = document.getElementById('año').value;
+            const director = document.getElementById('director').value;
+            const duracion = document.getElementById('duracion').value;
+            const calificacion = document.getElementById('calificacion').value;
+
+            const peliculaData = { nombre, categoria, año, director, duracion, calificacion };
+
+            if (peliculaId) {
+                // Actualizar película existente
+                await fetch(`${apiURL}/${peliculaId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(peliculaData)
+                });
+            } else {
+                // Crear nueva película
+                await fetch(apiURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(peliculaData)
+                });
+            }
+
+            // Limpiar el formulario y recargar la lista de películas
+            peliculaForm.reset();
+            obtenerPeliculas();
+        }
+
+        // Función para editar una película
+        async function editarPelicula(id) {
+            const response = await fetch(`${apiURL}/${id}`);
+            const pelicula = await response.json();
+            document.getElementById('peliculaId').value = pelicula._id;
+            document.getElementById('nombre').value = pelicula.nombre;
+            document.getElementById('categoria').value = pelicula.categoria;
+            document.getElementById('año').value = pelicula.año;
+            document.getElementById('director').value = pelicula.director;
+            document.getElementById('duracion').value = pelicula.duracion;
+            document.getElementById('calificacion').value = pelicula.calificacion;
+        }
+
+        // Función para eliminar una película
+        async function eliminarPelicula(id) {
+            await fetch(`${apiURL}/${id}`, {
+                method: 'DELETE'
+            });
+            obtenerPeliculas();
+        }
+
+        // Cargar todas las películas al iniciar
+        obtenerPeliculas();
+
+        // Escuchar el evento submit del formulario
+        peliculaForm.addEventListener('submit', guardarPelicula);
+    </script>
+</body>
+</html>
