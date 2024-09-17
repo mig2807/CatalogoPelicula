@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   api:
     build: .
@@ -7,22 +6,18 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=test
-      - MONGO_URI=mongodb://mongodb:27017/catalogoPeliculasTest
     depends_on:
       - mongodb
     networks:
       - cine-network
-    command: ["npm", "run", "test"]  # Para correr los tests automáticamente
-
+    command: ["npm", "run", "test"]  # Ejecutar las pruebas automáticamente
   mongodb:
     image: mongo:7.0.14
     volumes:
       - mongo-test-data:/data/db
     networks:
       - cine-network
-
 volumes:
   mongo-test-data:
-
 networks:
   cine-network:

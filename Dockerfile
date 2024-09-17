@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 # Copiar el archivo package.json y package-lock.json
 COPY package*.json ./
 
-# Instalar las dependencias
+# Instalar todas las dependencias, incluidas las de desarrollo
 RUN npm install
 
 # Copiar todo el código fuente al contenedor
@@ -16,5 +16,5 @@ COPY . .
 # Exponer el puerto de la aplicación
 EXPOSE 3000
 
-# Comando para ejecutar la aplicación
-CMD ["npm", "start"]
+# Comando para ejecutar las pruebas
+CMD ["npm", "run", "test"]
