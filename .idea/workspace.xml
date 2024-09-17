@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cb22b5c-4597-4401-9958-baa044e708e4" name="Changes" comment="Add test class and new docker-compose.test for running tests" />
+    <list default="true" id="8cb22b5c-4597-4401-9958-baa044e708e4" name="Changes" comment="Add test class and new docker-compose.test for running tests">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,21 +22,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jhonCa11"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jhonCa11&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mig2807/CatalogoPelicula.git",
-    "accountId": "dab7c433-e562-4f7f-8b5d-7a131c9206b0"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mig2807/CatalogoPelicula.git&quot;,
+    &quot;accountId&quot;: &quot;dab7c433-e562-4f7f-8b5d-7a131c9206b0&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2mCwlIPv9wDLlBcJUjDDK9vaFt5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,6 +45,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/jhonc/Documents/UNIBAGUE/DevOps/DevOps_Taller1/CatalogoPelicula",
     "node.js.detected.package.eslint": "true",
@@ -74,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726594016209</updated>
       <workItem from="1726594017623" duration="3444000" />
+      <workItem from="1726608463569" duration="3689000" />
     </task>
     <task id="LOCAL-00001" summary="Add test class and new docker-compose.test for running tests">
       <option name="closed" value="true" />
